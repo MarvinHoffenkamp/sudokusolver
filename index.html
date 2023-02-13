@@ -35,9 +35,17 @@
                 background: #ffffff;
             }
         </style>
-        <script src="sudoku.js"></script>
+        
     </head>
     <body>
+        <script type="module">
+            import SudokuSolver from "./sudoku.js";
+            let solver = new SudokuSolver();
+
+            document.getElementById('solveButton').addEventListener('click', () => {
+                solver.solve();
+            });
+        </script>
         <h1>Sudoku solver</h1>
         <table>
             <!-- lelijke oplossing, was iets handiger tijdens developen, je zou de rows kunnen herhalen dmv bijvoorbeeld jquery-->
@@ -142,7 +150,7 @@
             </tr>
         </table>
         <p>
-            <button type="button" onclick="solve()">Check</button>
+            <button type="button" id="solveButton">Check</button>
             <p id="logger">Log:</p>
         </p>
     </body>
