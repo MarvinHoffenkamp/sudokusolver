@@ -1,5 +1,5 @@
 # Sudoku Solver
-A little sudoku solver program i wrote as a coding challenge
+A little sudoku solver program i wrote for a coding challenge
 
 Roughly implemented the backtracking algorithm from [Wikipedia](https://en.wikipedia.org/wiki/Sudoku_solving_algorithms)
 
