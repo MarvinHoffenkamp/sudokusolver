@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sudoku solver</title>
+        <style>
+            tr:first-child td {
+                border-top-color: black;
+            }
+            tr:nth-child(3n) td {
+                border-bottom-color: black;
+            }
+            td {
+                border: 1px solid lightgrey;
+                height: 40px;
+                width: 40px;
+            }
+            td:first-child {
+                border-left-color: black;
+            }
+            td:nth-child(3n) {
+                border-right-color: black;
+            }
+            input {
+                padding: 0;
+                text-align: center;
+                border: 0;
+                height: 40px;
+                width: 40px;
+                text-align: center;
+            }
+            input:hover {
+                background: #ffffff;
+            }
+        </style>
+        <script src="sudoku.js"></script>
+    </head>
+    <body>
+        <h1>Sudoku solver</h1>
+        <table>
+            <!-- lelijke oplossing, was iets handiger tijdens developen, je zou de rows kunnen herhalen dmv bijvoorbeeld jquery-->
+            <tr>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="1" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="6"/></td>
+            </tr>
+            <tr>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="6"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="2"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="7"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+            </tr>
+            <tr>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="7"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="8"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="9"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="4"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="5"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="1"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="3"/></td>
+            </tr>
+            <tr>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="8"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="7"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="4"/></td>
+            </tr>
+            <tr>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="3"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+            </tr>
+            <tr>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="9"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="4"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="2"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="1"/></td>
+            </tr>
+            <tr>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="3"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="1"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="2"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="9"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="7"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="4"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+            </tr>
+            <tr>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="4"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="1"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="2"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="7"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="8"/></td>
+            </tr>
+            <tr>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="9"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" value="8"/></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+                <td><input name="sudokuArray[]" type="number" min="1" max="9" /></td>
+            </tr>
+        </table>
+        <p>
+            <button type="button" onclick="solve()">Check</button>
+            <p id="logger">Log:</p>
+        </p>
+    </body>
+
+</html>
